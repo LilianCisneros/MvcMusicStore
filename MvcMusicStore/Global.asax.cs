@@ -16,12 +16,14 @@ namespace MvcMusicStore
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            System.Data.Entity.Database.SetInitializer(new MvcMusicStore.Models.SampleData());
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //RegisterRoutes(RouteTable.Routes);
+            //WebApiConfig.Register(GlobalConfiguration.Configuration);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

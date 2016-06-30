@@ -21,14 +21,17 @@ namespace MvcMusicStore.Controllers
         // GET: /Store/Browse
         public ActionResult Browse(string genre)
         {
-            var genreModel = new Genre { Name = genre };
+            //IQueryable<Album> query = storeDB.Albums;
+           // query = query.Where(c => c.Genre.Name==genre);
+            var genreModel = storeDB.Genres.Include("Albums").Single(g => g.Name == genre);
             return View(genreModel);
         }
         //
         // GET: /Store/Details
         public ActionResult Details(int id)
         {
-            var album = new Album { Title = "Album" + id };
+           //var album = new Album { Title = "Album" + id };
+            var album = storeDB.Albums.Find(id);
             return View(album);
         }
     }
